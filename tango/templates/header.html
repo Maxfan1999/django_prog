@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>My Forum</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class=navbar-brand href="#">My forum</a>
+    <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ml-auto">
+        {% if not user.is_authenticated %}
+        <li class="nav-item"><a href="/" class="nav-link">Главная</a></li>
+        <li class="nav-item"><a href="/app/reg" class="nav-link">Реестрация</a></li>
+        <li class="nav-item"><a href="/app/login" class="nav-link">Войти</a></li>
+        {% else %}
+        <li class="nav-item"><a href="/" class="nav-link">Главная</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Hello, {{ user.username }}</a></li>
+        <li class="nav-item"><a href="app/add_article" class="nav-link">Добавить статью</a></li>
+        <li class="nav-item"><a href="app/logout" class="nav-link">Вийти</a></li>
+
+        {% endif %}
+    </ul>
+    </div>
+</nav>
+{% block body_block %}{% endblock %}
+</body>
+</html>
